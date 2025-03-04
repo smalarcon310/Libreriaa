@@ -61,3 +61,43 @@ class Biblioteca {
                 encontrados.add(libro);
             }
         }
+        return encontrados;
+    }
+
+    public void listarLibros() {
+        if (libros.isEmpty()) {
+            System.out.println("No hay libros en la biblioteca.");
+        } else {
+            for (Libro libro : libros) {
+                System.out.println(libro);
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Biblioteca biblioteca = new Biblioteca();
+
+        while (true) {
+            System.out.println("\nGestión de Biblioteca");
+            System.out.println("1. Agregar libro");
+            System.out.println("2. Buscar libro por título");
+            System.out.println("3. Buscar libro por autor");
+            System.out.println("4. Listar todos los libros");
+            System.out.println("5. Salir");
+
+            System.out.print("Seleccione una opción: ");
+            String opcion = scanner.nextLine();
+
+            switch (opcion) {
+                case "1":
+                    System.out.print("Ingrese el título del libro: ");
+                    String titulo = scanner.nextLine();
+                    System.out.print("Ingrese el autor del libro: ");
+                    String autor = scanner.nextLine();
+                    System.out.print("Ingrese el ISBN del libro: ");
+                    String isbn = scanner.nextLine();
+                    biblioteca.agregarLibro(new Libro(titulo, autor, isbn));
+                    break;
