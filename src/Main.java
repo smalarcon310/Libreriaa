@@ -61,6 +61,7 @@ class Biblioteca {
                 encontrados.add(libro);
             }
         }
+<<<<<<< HEAD
         return encontrados;
     }
 
@@ -101,3 +102,6 @@ public class Main {
                     String isbn = scanner.nextLine();
                     biblioteca.agregarLibro(new Libro(titulo, autor, isbn));
                     break;
+=======
+//jijijijijijijijijijijiijijijijijijijijiijji
+>>>>>>> d82d140b98dcd683d3d97085c93f10374e882a7f
