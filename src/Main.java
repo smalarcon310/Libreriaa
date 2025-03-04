@@ -29,5 +29,35 @@ class Libro {
         String estado = disponible ? "Disponible" : "Prestado";
         return String.format("Título: %s, Autor: %s, ISBN: %s, Estado: %s",
                 titulo, autor, isbn, estado);
+
     }
 }
+class Biblioteca {
+    private List<Libro> libros;
+
+    public Biblioteca() {
+        libros = new ArrayList<>();
+    }
+
+    public void agregarLibro(Libro libro) {
+        libros.add(libro);
+        System.out.printf("Libro '%s' agregado con éxito.%n", libro.getTitulo());
+    }
+
+    public List<Libro> buscarPorTitulo(String titulo) {
+        List<Libro> encontrados = new ArrayList<>();
+        for (Libro libro : libros) {
+            if (libro.getTitulo().equalsIgnoreCase(titulo)) {
+                encontrados.add(libro);
+            }
+        }
+        return encontrados;
+    }
+
+    public List<Libro> buscarPorAutor(String autor) {
+        List<Libro> encontrados = new ArrayList<>();
+        for (Libro libro : libros) {
+            if (libro.getAutor().equalsIgnoreCase(autor)) {
+                encontrados.add(libro);
+            }
+        }
