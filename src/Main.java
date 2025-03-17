@@ -15,7 +15,6 @@ class Libro {
 
     public String getTitulo() { return titulo; }
     public String getAutor() { return autor; }
-    public String getIsbn() { return isbn; }
     public boolean isDisponible() { return disponible; }
     public void setDisponible(boolean disponible) { this.disponible = disponible; }
 
@@ -42,7 +41,7 @@ class Biblioteca {
         }
         return resultado;
     }
-
+//=
     public List<Libro> buscarPorAutor(String autor) {
         List<Libro> resultado = new ArrayList<>();
         for (Libro libro : libros) {
@@ -108,3 +107,5 @@ public class Main {
         }
     }
 }
+
+
