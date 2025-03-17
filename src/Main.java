@@ -3,9 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 class Libro {
-    private String titulo;
-    private String autor;
-    private String isbn;
+    private String titulo, autor, isbn;
     private boolean disponible;
 
     public Libro(String titulo, String autor, String isbn) {
@@ -15,62 +13,51 @@ class Libro {
         this.disponible = true;
     }
 
-    // Getters
     public String getTitulo() { return titulo; }
     public String getAutor() { return autor; }
     public String getIsbn() { return isbn; }
-    public boolean setDisponible() { return disponible; }
-
-    // Setters
-    public void setDisponible(boolean estado) { disponible = estado; }
+    public boolean isDisponible() { return disponible; }
+    public void setDisponible(boolean disponible) { this.disponible = disponible; }
 
     @Override
     public String toString() {
-        String estado = disponible ? "Disponible" : "Prestado";
-        return String.format("Título: %s, Autor: %s, ISBN: %s, Estado: %s",
-                titulo, autor, isbn, estado);
-
+        return "Título: " + titulo + ", Autor: " + autor + ", ISBN: " + isbn + ", Estado: " + (disponible ? "Disponible" : "Prestado");
     }
 }
-class Biblioteca {
-    private List<Libro> libros;
 
-    public Biblioteca() {
-        libros = new ArrayList<>();
-    }
+class Biblioteca {
+    private List<Libro> libros = new ArrayList<>();
 
     public void agregarLibro(Libro libro) {
         libros.add(libro);
-        System.out.printf("Libro '%s' agregado.%n", libro.getTitulo());
+        System.out.println("Libro agregado: " + libro.getTitulo());
     }
 
     public List<Libro> buscarPorTitulo(String titulo) {
-        List<Libro> encontrados = new ArrayList<>();
+        List<Libro> resultado = new ArrayList<>();
         for (Libro libro : libros) {
             if (libro.getTitulo().equalsIgnoreCase(titulo)) {
-                encontrados.add(libro);
+                resultado.add(libro);
             }
         }
-       ; return encontrados;
+        return resultado;
     }
 
     public List<Libro> buscarPorAutor(String autor) {
-        List<Libro> encontrados = new ArrayList<>();
+        List<Libro> resultado = new ArrayList<>();
         for (Libro libro : libros) {
             if (libro.getAutor().equalsIgnoreCase(autor)) {
-                encontrados.add(libro);
+                resultado.add(libro);
             }
         }
-        return encontrados;
+        return resultado;
     }
 
     public void listarLibros() {
         if (libros.isEmpty()) {
             System.out.println("No hay libros en la biblioteca.");
         } else {
-            for (Libro libro : libros) {
-                System.out.println(libro);
-            }
+            libros.forEach(System.out::println);
         }
     }
 }
@@ -83,57 +70,41 @@ public class Main {
         while (true) {
             System.out.println("\nGestión de Biblioteca");
             System.out.println("1. Agregar libro");
-            System.out.println("2. Buscar libro por título");
-            System.out.println("3. Buscar libro por autor");
-            System.out.println("4. Listar todos los libros");
+            System.out.println("2. Buscar por título");
+            System.out.println("3. Buscar por autor");
+            System.out.println("4. Listar libros");
             System.out.println("5. Salir");
-
             System.out.print("Seleccione una opción: ");
-            String opcion = scanner.nextLine();
 
+            String opcion = scanner.nextLine();
             switch (opcion) {
                 case "1":
-                    System.out.print("Ingrese el título del libro: ");
+                    System.out.print("Título: ");
                     String titulo = scanner.nextLine();
-                    System.out.print("Ingrese el autor del libro: ");
+                    System.out.print("Autor: ");
                     String autor = scanner.nextLine();
-                    System.out.print("Ingrese el ISBN del libro: ");
+                    System.out.print("ISBN: ");
                     String isbn = scanner.nextLine();
                     biblioteca.agregarLibro(new Libro(titulo, autor, isbn));
                     break;
                 case "2":
-                    System.out.print("Ingrese el título a buscar: ");
-                    List<Libro> porTitulo = biblioteca.buscarPorTitulo(scanner.nextLine());
-                    if (porTitulo.isEmpty()) {
-                        System.out.println("No se encontró ningún libro con ese título.");
-                    } else {
-                        porTitulo.forEach(System.out::println);
-                    }
+                    System.out.print("Ingrese título: ");
+                    biblioteca.buscarPorTitulo(scanner.nextLine()).forEach(System.out::println);
                     break;
-
                 case "3":
-                    System.out.print("Ingrese el autor a buscar: ");
-                    List<Libro> porAutor = biblioteca.buscarPorAutor(scanner.nextLine());
-                    if (porAutor.isEmpty()) {
-                        System.out.println("No se encontró ningún libro de ese autor.");
-                    } else {
-                        porAutor.forEach(System.out::println);
-                    }
+                    System.out.print("Ingrese autor: ");
+                    biblioteca.buscarPorAutor(scanner.nextLine()).forEach(System.out::println);
                     break;
-
                 case "4":
                     biblioteca.listarLibros();
                     break;
-
                 case "5":
-                    System.out.println("Saliendo del sistema...");
+                    System.out.println("Saliendo...");
                     scanner.close();
                     return;
-
                 default:
                     System.out.println("Opción no válida. Inténtelo de nuevo.");
             }
         }
     }
 }
-
