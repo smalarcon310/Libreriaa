@@ -61,7 +61,6 @@ class Biblioteca {
                 encontrados.add(libro);
             }
         }
-<<<<<<< HEAD
         return encontrados;
     }
 
@@ -102,4 +101,39 @@ public class Main {
                     String isbn = scanner.nextLine();
                     biblioteca.agregarLibro(new Libro(titulo, autor, isbn));
                     break;
+                case "2":
+                    System.out.print("Ingrese el título a buscar: ");
+                    List<Libro> porTitulo = biblioteca.buscarPorTitulo(scanner.nextLine());
+                    if (porTitulo.isEmpty()) {
+                        System.out.println("No se encontró ningún libro con ese título.");
+                    } else {
+                        porTitulo.forEach(System.out::println);
+                    }
+                    break;
+
+                case "3":
+                    System.out.print("Ingrese el autor a buscar: ");
+                    List<Libro> porAutor = biblioteca.buscarPorAutor(scanner.nextLine());
+                    if (porAutor.isEmpty()) {
+                        System.out.println("No se encontró ningún libro de ese autor.");
+                    } else {
+                        porAutor.forEach(System.out::println);
+                    }
+                    break;
+
+                case "4":
+                    biblioteca.listarLibros();
+                    break;
+
+                case "5":
+                    System.out.println("Saliendo del sistema...");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Opción no válida. Inténtelo de nuevo.");
+            }
+        }
+    }
+}
 
