@@ -19,7 +19,7 @@ class Libro {
     public String getTitulo() { return titulo; }
     public String getAutor() { return autor; }
     public String getIsbn() { return isbn; }
-    public boolean estaDisponible() { return disponible; }
+    public boolean setDisponible() { return disponible; }
 
     // Setters
     public void setDisponible(boolean estado) { disponible = estado; }
@@ -41,7 +41,7 @@ class Biblioteca {
 
     public void agregarLibro(Libro libro) {
         libros.add(libro);
-        System.out.printf("Libro '%s' agregado con éxito.%n", libro.getTitulo());
+        System.out.printf("Libro '%s' agregado.%n", libro.getTitulo());
     }
 
     public List<Libro> buscarPorTitulo(String titulo) {
@@ -51,7 +51,7 @@ class Biblioteca {
                 encontrados.add(libro);
             }
         }
-        return encontrados;
+       ; return encontrados;
     }
 
     public List<Libro> buscarPorAutor(String autor) {
